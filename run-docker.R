@@ -1,7 +1,8 @@
 # Setup -------------------------------------------------------------------
 pkgload::load_all(export_all = FALSE, helpers = FALSE)
 with_dir <- withr::with_dir
-source_path <- file.path(getwd(), 'DockerOperator')
+app <- c("airflowdocker", "Shawe82")[2]
+source_path <- file.path(getwd(), app)
 
 # Run Docker --------------------------------------------------------------
 with_dir(source_path, DockerCompose$new()$stop())
