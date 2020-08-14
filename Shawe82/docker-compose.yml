@@ -1,4 +1,7 @@
 services:
+    ######################################################
+    ## Redis
+    ######################################################
     redis:
         container_name: redis
         image: redis:alpine
@@ -7,7 +10,9 @@ services:
         volumes:
             - ../data/redis:/data
         restart: always
-
+    ######################################################
+    ## Postgress
+    ######################################################
     postgres:
         container_name: postgres-db
         image: postgres:9.6
@@ -15,7 +20,9 @@ services:
             - POSTGRES_USER=airflow
             - POSTGRES_PASSWORD=airflow
             - POSTGRES_DB=airflow
-
+    ######################################################
+    ## Airflow Webserver
+    ######################################################
     webserver:
         container_name: airflow
         image: aflow-docker
@@ -27,17 +34,13 @@ services:
             - EXECUTOR=Local
         depends_on:
             - postgres
-
         volumes:
             - ./dags:/usr/local/airflow/dags
             - /var/run/docker.sock:/var/run/docker.sock
             - /usr/bin/docker:/bin/docker:ro
-
         ports:
             - "8080:8080"
-
         command: webserver
-
         healthcheck:
             test: ["CMD-SHELL", "[ -f /usr/local/airflow/airflow-webserver.pid ]"]
             interval: 30s
