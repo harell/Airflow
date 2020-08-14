@@ -1,0 +1,18 @@
+Package: template.project
+Type: Airflow
+Title: Playground for Airflow
+Version: 0.0.1
+Date: 2020-04-24
+Authors@R: c(person("Harel", "Lustiger", email = "tidylab@gmail.com", role = c("aut", "cre")))
+Maintainer: Harel Lustiger <tidylab@gmail.com>
+Description: Various Airflow Projects
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.0
+Roxygen: list(markdown = TRUE, r6 = TRUE)
+Language: en-GB
+Depends: 
+    R (>= 3.5)
+Imports:
+    withr
