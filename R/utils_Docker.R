@@ -51,3 +51,6 @@ Docker$funs$system <- function(command, ...){
     message("\033[43m\033[44m",command,"\033[43m\033[49m")
     base::system(command, ...)
 }
+
+
+docker <-  Docker$new()
