@@ -1,7 +1,6 @@
-from datetime import datetime, timedelta
-
 from airflow import DAG
 from airflow.operators.docker_operator import DockerOperator
+from datetime import datetime, timedelta
 
 default_args = {
     "start_date": datetime(2019, 11, 14),
