@@ -3,8 +3,9 @@ FROM python:3.7-slim as builder
 RUN apt-get update \
  && apt-get install -y g++ \
  && pip install --upgrade pip \
- && pip --no-cache-dir install poetry poetry-setup \
- && poetry config settings.virtualenvs.create false
+ && pip --no-cache-dir install poetry poetry-setup
+
+#RUN poetry config settings.virtualenvs.create false
 
 COPY ./pyproject.toml /app/
 
