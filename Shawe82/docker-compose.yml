@@ -26,7 +26,9 @@ services:
     webserver:
         container_name: airflow
         image: aflow-docker
-        build: .
+        build:
+          context: ./
+          dockerfile: ./docker/airflow/Dockerfile
         restart: always
         privileged: true
         environment:
