@@ -1,5 +1,13 @@
 services:
     ######################################################
+    ## Extraneous Docker
+    ######################################################
+    extraneous-docker:
+      container_name: etl-dummy
+      image: etl-dummy
+      build: ./docker/etl-dummy
+      restart: "no"
+    ######################################################
     ## Redis
     ######################################################
     redis:
@@ -26,7 +34,9 @@ services:
     webserver:
         container_name: airflow
         image: aflow-docker
-        build: .
+        build:
+          context: ./
+          dockerfile: ./docker/airflow/Dockerfile
         restart: always
         privileged: true
         environment:
@@ -34,6 +44,7 @@ services:
             - EXECUTOR=Local
         depends_on:
             - postgres
+            - extraneous-docker
         volumes:
             - ./dags:/usr/local/airflow/dags
             - /var/run/docker.sock:/var/run/docker.sock
@@ -51,4 +62,4 @@ version: '3.7'
 networks:
   default:
     name: DockerOperator
-#    driver: overlay
+    driver: bridge
