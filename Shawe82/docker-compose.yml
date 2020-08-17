@@ -62,4 +62,4 @@ version: '3.7'
 networks:
   default:
     name: DockerOperator
-#    driver: overlay
+    driver: bridge

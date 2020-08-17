@@ -12,7 +12,7 @@ def make_etl_operator(task_id: str, operation: str):
         task_id=task_id,
         image=f"etl-dummy:latest",
         auto_remove=True,
-        network_mode="airflow-tutorial_default"
+        network_mode="bridge"
     )
 
 # Define DAG --------------------------------------------------------------
