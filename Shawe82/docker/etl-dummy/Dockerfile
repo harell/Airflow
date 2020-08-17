@@ -2,19 +2,18 @@
 FROM python:3.7-slim as builder
 RUN apt-get update \
  && apt-get install -y g++ \
- && pip install --upgrade pip \
- && pip --no-cache-dir install poetry poetry-setup
+ && pip install --upgrade pip
 
-#RUN poetry config settings.virtualenvs.create false
-
+# Dependency Management for Python ---------------------------------------------
+RUN pip --no-cache-dir install poetry poetry-setup
 COPY ./pyproject.toml /app/
-
 WORKDIR /app/
+RUN poetry config virtualenvs.create false
 RUN poetry install --no-dev
 
 COPY ./etl_dummy /app/etl_dummy
 RUN poetry build --format wheel \
-&& pip install --no-cache-dir dist/*.whl
+ && pip install --no-cache-dir dist/*.whl
 
 RUN true \
  && pip uninstall -y poetry poetry-setup pip \

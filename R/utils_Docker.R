@@ -52,5 +52,4 @@ Docker$funs$system <- function(command, ...){
     base::system(command, ...)
 }
 
-
-docker <-  Docker$new()
+docker <<- Docker$new()

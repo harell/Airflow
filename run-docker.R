@@ -5,6 +5,7 @@ app <- c("airflowdocker", "Shawe82")[2]
 source_path <- file.path(getwd(), app)
 
 # Run Docker --------------------------------------------------------------
+docker$remove_dangling_images()
 with_dir(source_path, DockerCompose$new()$stop())
 with_dir(source_path, DockerCompose$new()$start())
 
