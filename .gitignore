@@ -4,3 +4,4 @@
 .Ruserdata
 *.rdb
 .idea/
+*.pyc
