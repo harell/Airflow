@@ -78,6 +78,13 @@ COPY config/airflow.cfg ${AIRFLOW_USER_HOME}/airflow.cfg
 
 RUN chown -R airflow: ${AIRFLOW_USER_HOME}
 
+# Install R --------------------------------------------------------------------
+#RUN apt-get update && apt-get install -y --no-install-recommends build-essential r-base
+
+# Install Python ---------------------------------------------------------------
+#RUN apt-get update && apt-get install -y --no-install-recommends python3.7 python3-pip python3-setuptools python3-dev
+
+# Start ------------------------------------------------------------------------
 EXPOSE 8080 5555 8793
 
 USER airflow
