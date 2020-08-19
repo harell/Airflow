@@ -1,7 +1,7 @@
 # VERSION 1.10.10
 # REFERENCE: https://airflow.apache.org/docs/stable/installation.html
 
-FROM python:3.6.9-slim-stretch
+FROM python:3.7.9-slim-stretch
 LABEL maintainer="Puckel_"
 
 # Never prompts the user for choices on installation/configuration of packages
@@ -66,7 +66,7 @@ RUN set -ex \
         /usr/share/doc-base
 
 RUN pip install apache-airflow[postgres]==${AIRFLOW_VERSION} --constraint \
-    https://raw.githubusercontent.com/apache/airflow/${AIRFLOW_VERSION}/requirements/requirements-python3.6.txt
+    https://raw.githubusercontent.com/apache/airflow/${AIRFLOW_VERSION}/requirements/requirements-python3.7.txt
 
 COPY config/airflow.cfg ${AIRFLOW_USER_HOME}/airflow.cfg
 COPY script/entrypoint.sh /entrypoint.sh
