@@ -73,7 +73,7 @@ COPY script/entrypoint.sh /entrypoint.sh
 
 RUN chown -R airflow: ${AIRFLOW_USER_HOME}
 
-EXPOSE 8080 5555 8793
+EXPOSE 1600 5555 8793
 
 USER airflow
 WORKDIR ${AIRFLOW_USER_HOME}
