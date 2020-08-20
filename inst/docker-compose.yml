@@ -1,4 +1,3 @@
-version: '3.5'
 services:
 ######################################################
 # AIRFLOW
@@ -13,6 +12,7 @@ services:
       - ./mnt/airflow/dags:/usr/local/airflow/dags
       - ./mnt/airflow/test_dags:/usr/local/airflow/test_dags
       - ./mnt/airflow/airflow.cfg:/usr/local/airflow/airflow.cfg
+      - ./mnt/airflow/logs:/usr/local/airflow/logs
     ports:
       - 8080:8080
     healthcheck:
@@ -20,3 +20,8 @@ services:
       timeout: 45s
       interval: 10s
       retries: 10
+######################################################
+version: '3.5'
+#networks:
+#  default:
+#    name: playground-airflow

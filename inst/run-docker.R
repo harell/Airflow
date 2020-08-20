@@ -1,16 +1,18 @@
 # Setup -------------------------------------------------------------------
 pkgload::load_all(export_all = FALSE, helpers = FALSE)
-with_dir <- withr::with_dir
-app <- c("apache", "airflowdocker", "Shawe82", "puckel", "udemy")[5]
-source_path <- file.path(getwd(), app)
 
 # Run Docker --------------------------------------------------------------
 docker$kill_all_containers()
 docker$remove_dangling_images()
-with_dir(source_path, DockerCompose$new()$stop())
-with_dir(source_path, DockerCompose$new()$start())
+withr::with_dir(usethis::proj_path("inst"),{
+    DockerCompose$new()$stop()
+    DockerCompose$new()$start()
+})
 
 # Open UI -----------------------------------------------------------------
 cat('Opening browser in ')
-for(i in 12:1) {cat(i, '...', sep=''); Sys.sleep(1)}
-with_dir(source_path, DockerCompose$new()$browse_url("webserver"))
+for(i in 10:1) {cat(i, '...', sep=''); Sys.sleep(1)}
+withr::with_dir(
+    usethis::proj_path("inst"),
+    DockerCompose$new()$browse_url("airflow")
+)
