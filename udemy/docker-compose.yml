@@ -7,7 +7,9 @@ services:
             - POSTGRES_PASSWORD=airflow
             - POSTGRES_DB=airflow
     webserver:
-        build: ./docker/airflow
+        build:
+          context: ./
+          dockerfile: ./docker/airflow/Dockerfile
         restart: always
         depends_on:
             - postgres
