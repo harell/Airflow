@@ -36,6 +36,7 @@ RUN set -ex \
     && apt-get upgrade -yqq \
     && apt-get install -yqq --no-install-recommends \
         $buildDeps \
+        dos2unix \
         freetds-bin \
         build-essential \
         default-libmysqlclient-dev \
@@ -70,6 +71,7 @@ RUN pip install apache-airflow[postgres]==${AIRFLOW_VERSION} --constraint \
 
 COPY docker/airflow/config/airflow.cfg ${AIRFLOW_USER_HOME}/airflow.cfg
 COPY docker/airflow/script/entrypoint.sh /entrypoint.sh
+RUN dos2unix entrypoint.sh
 
 RUN chown -R airflow: ${AIRFLOW_USER_HOME}
 
